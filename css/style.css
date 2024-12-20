@@ -21,6 +21,8 @@ body {
   color: #fff;
   border-radius: 5px;
   padding: 5px 10px;
+  outline: 0;
+  border: 0;
 }
 
 .taskName {
@@ -57,4 +59,5 @@ body {
   background-color: var(--main-color);
   padding: 5px 10px;
   border-radius: 5px;
+  cursor: pointer;
 }
