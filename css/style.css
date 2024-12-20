@@ -1,0 +1,60 @@
+:root {
+  --main-color: #9b4cf3;
+}
+
+@font-face {
+  font-family: "exo";
+  src: url(exoFont/Exo2-Regular.ttf);
+}
+
+body {
+  font-family: "exo";
+  background-color: var(--main-color);
+}
+
+.custom-input:focus {
+  box-shadow: 0 0 0 5px #9b4cf57f;
+}
+
+.addTask {
+  background-color: var(--main-color);
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.taskName {
+  position: relative;
+  cursor: pointer;
+}
+
+.taskName::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.taskName:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.icon {
+  font-size: 24px;
+  color: #fff;
+  background-color: var(--main-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+}

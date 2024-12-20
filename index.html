@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bookmark">
+  <link rel="shortcut icon" href="imgs/todo icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>To-Do App</title>
+</head>
+
+<body>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="inner">
+          <form class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between gap-4 shadow">
+            <input type="text" name="taskInput" class="form-control custom-input" id="taskInput"
+              placeholder="Task To Be Done...">
+            <button id="addTask" class="addTask btn col-2">Add</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="inner">
+          <ul id="taskData"
+            class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between gap-4 shadow list-unstyled">
+            <li class="d-flex justify-content-between align-items-center col-12 py-2 border-bottom">
+              <span class="taskName" data-tooltip="Click to complete">Name</span>
+              <div class="d-flex align-items-center gap-3">
+                <span><i class="fa-regular fa-circle-check" style="color: #63e6be;"></i></span>
+                <span class="icon"><i class="fa-solid fa-trash-can"></i></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>
