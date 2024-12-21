@@ -144,7 +144,7 @@ body {
 #progress{
   height: inherit;
   background-color: #641df1;
-  width: 50%;
+  width: 0;
 }
 
 .statusNumber{
