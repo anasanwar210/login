@@ -261,9 +261,21 @@ function completedTodos() {
   const completedTask = allTodos.filter((todo) => todo.completed);
   allTasks.innerHTML = allTodos.length;
   completed.innerHTML = completedTask.length;
-  document.getElementById("progress").style.width = `${
-    (completedTask.length / allTodos.length) * 100
-  }%`;
+  if (allTodos.length == 0 && completedTask.length == 0) {
+    document.getElementById("progress").style.width = "0%";
+  } else if (allTodos.length > 0 && allTodos.length === completedTask.length) {
+    document.querySelector(".todoStatus").classList.remove("bg-light");
+    document.querySelector(".todoStatus").classList.remove("bg-opacity-25");
+    document.querySelector(".todoStatus").classList.add("bg-success");
+    document.getElementById("progress").style.width = "100%";
+  } else if (allTodos.length !== completedTask.length) {
+    document.querySelector(".todoStatus").classList.add("bg-light");
+    document.querySelector(".todoStatus").classList.add("bg-opacity-25");
+    document.querySelector(".todoStatus").classList.remove("bg-success");
+    document.getElementById("progress").style.width = `${
+      (completedTask.length / allTodos.length) * 100
+    }%`;
+  }
 }
 
 function removeClickEvent(spanElement) {
