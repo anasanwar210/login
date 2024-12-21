@@ -20,24 +20,6 @@ formEle.addEventListener("submit", (e) => {
 });
 
 editTask.addEventListener("click", confirmUpdate);
-document.addEventListener("keydown", (e) => {
-  console.log(e.key);
-  if (e.key === "Enter" && !editTask.classList.contains("d-none")) {
-    confirmUpdate();
-  }
-});
-
-// formEle.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   if (e.submitter.id === "addTask" && inputEle.value.trim().length > 0) {
-//     addTodos();
-//   } else if (
-//     e.submitter.id === "editTask" &&
-//     inputEle.value.trim().length > 0
-//   ) {
-//     confirmUpdate();
-//   }
-// });
 
 async function addTodos() {
   const todoText = {
@@ -333,7 +315,7 @@ function updateTodo(id, index) {
 
 async function confirmUpdate() {
   await deleted();
-  addTodos();
+  await addTodos();
   addTask.classList.remove("d-none");
   editTask.classList.add("d-none");
 }
