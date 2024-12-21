@@ -154,6 +154,7 @@ body {
   height: inherit;
   background-color: #641df1;
   width: 0;
+  border-radius: 5px;
   transition: width 0.5s;
 }
 

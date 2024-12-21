@@ -1,6 +1,10 @@
 const formEle = document.querySelector("form");
 const inputEle = document.querySelector("input");
 const loading = document.querySelector(".loading");
+const addTask = document.getElementById("addTask");
+const editTask = document.getElementById("editTask");
+let curIndexOfTaskEdit;
+let curIdOfTaskEdit;
 
 const apiKey = "676581a560a208ee1fde7e30";
 
@@ -14,6 +18,26 @@ formEle.addEventListener("submit", (e) => {
     addTodos();
   }
 });
+
+editTask.addEventListener("click", confirmUpdate);
+document.addEventListener("keydown", (e) => {
+  console.log(e.key);
+  if (e.key === "Enter" && !editTask.classList.contains("d-none")) {
+    confirmUpdate();
+  }
+});
+
+// formEle.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   if (e.submitter.id === "addTask" && inputEle.value.trim().length > 0) {
+//     addTodos();
+//   } else if (
+//     e.submitter.id === "editTask" &&
+//     inputEle.value.trim().length > 0
+//   ) {
+//     confirmUpdate();
+//   }
+// });
 
 async function addTodos() {
   const todoText = {
@@ -127,11 +151,20 @@ function displayTodos() {
 
     // Start checkSpan
     const checkSpan = document.createElement("span");
-    checkSpan.className = todo.completed ? "completed" : "";
     checkSpan.innerHTML = todo.completed
       ? `<i class="fa-regular fa-circle-check" style="color: #63e6be;"></i>`
       : "";
     div.appendChild(checkSpan);
+
+    // Start editSpan
+    const editSpan = document.createElement("span");
+    editSpan.className = "icon bg-warning";
+    if (todo.completed) {
+      editSpan.classList.add("d-none");
+    }
+    editSpan.addEventListener("click", () => updateTodo(todo._id, index));
+    editSpan.innerHTML = '<i class="fa-solid fa-edit"></i>';
+    div.appendChild(editSpan);
 
     // Start deleteSpan
     const deleteSpan = document.createElement("span");
@@ -285,4 +318,49 @@ function removeClickEvent(spanElement) {
   spanElement.removeEventListener("click", markCompletedHandler);
   spanElement.style.cursor = "not-allowed";
   spanElement.dataset.tooltip = "Task completed";
+}
+
+function updateTodo(id, index) {
+  curIndexOfTaskEdit = index;
+  curIdOfTaskEdit = id;
+  inputEle.value = allTodos[index].title;
+
+  allTodos.splice(index, 1);
+  addTask.classList.add("d-none");
+  editTask.classList.remove("d-none");
+  displayTodos();
+}
+
+async function confirmUpdate() {
+  await deleted();
+  addTodos();
+  addTask.classList.remove("d-none");
+  editTask.classList.add("d-none");
+}
+
+async function deleted() {
+  loading.classList.remove("d-none");
+  const todoId = {
+    todoId: curIdOfTaskEdit,
+  };
+  const option = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todoId),
+  };
+
+  const response = await fetch(
+    "https://todos.routemisr.com/api/v1/todos",
+    option
+  );
+  if (response.ok) {
+    const data = await response.json();
+    if (data.message === "success") {
+      getAllTodos();
+    }
+  }
+  checkTaskIsEmpty();
+  loading.classList.add("d-none");
 }

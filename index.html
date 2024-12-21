@@ -37,7 +37,8 @@
           <form class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between gap-4 shadow">
             <input type="text" name="taskInput" class="form-control custom-input" id="taskInput"
               placeholder="Task To Be Done...">
-            <button id="addTask" class="addTask col-2">Add</button>
+            <button id="addTask" type="submit" value="add" class="addTask col-2">Add</button>
+            <span id="editTask" value="update" class="btn btn-warning border-0 rounded d-none col-2">Edit</span>
           </form>
           <ul id="taskData"
             class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between flex-column gap-4 shadow list-unstyled shadow">
