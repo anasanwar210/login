@@ -39,7 +39,7 @@ async function addTodos() {
     if (response.ok) {
       const data = await response.json();
       if (data.message === "success") {
-        toastr.success("Have fun storming the castle!", "Miracle Max Says");
+        toastr.success("Added Successfully", "Todo App");
         await getAllTodos();
         formEle.reset();
       }
@@ -262,6 +262,9 @@ function completedTodos() {
   allTasks.innerHTML = allTodos.length;
   completed.innerHTML = completedTask.length;
   if (allTodos.length == 0 && completedTask.length == 0) {
+    document.querySelector(".todoStatus").classList.add("bg-light");
+    document.querySelector(".todoStatus").classList.add("bg-opacity-25");
+    document.querySelector(".todoStatus").classList.remove("bg-success");
     document.getElementById("progress").style.width = "0%";
   } else if (allTodos.length > 0 && allTodos.length === completedTask.length) {
     document.querySelector(".todoStatus").classList.remove("bg-light");
