@@ -7,37 +7,53 @@
   <meta name="description" content="Bookmark">
   <link rel="shortcut icon" href="imgs/todo icon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <title>To-Do App</title>
 </head>
 
 <body>
-
+  <div class="loading d-none">
+    <span class="loader"></span>
+  </div>
   <section>
     <div class="container">
       <div class="row">
         <div class="inner">
+          <div
+            class="todoStatus col-md-8 m-auto bg-light bg-opacity-25 p-3 border my-3 rounded d-flex justify-content-between gap-4 shadow d-flex justify-content-center align-items-center">
+            <div class="todoApp flex-grow-1">
+              <h1 class="h5 text-white">Todo App</h1>
+              <span class="text-white">keep it up!</span>
+              <div id="progressBar">
+                <div id="progress"></div>
+              </div>
+            </div>
+            <div class="statusNumber d-flex justify-content-center align-items-center rounded-pill"><span
+                class="completed">1</span> / <span class="allTasks">2</span></div>
+          </div>
           <form class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between gap-4 shadow">
             <input type="text" name="taskInput" class="form-control custom-input" id="taskInput"
               placeholder="Task To Be Done...">
             <button id="addTask" class="addTask col-2">Add</button>
           </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="inner">
           <ul id="taskData"
             class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between flex-column gap-4 shadow list-unstyled shadow">
-
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js
+"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
 </body>
