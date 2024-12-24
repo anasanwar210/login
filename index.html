@@ -21,17 +21,23 @@
 
   <div id="editBox"
     class="editBox d-none position-fixed vh-100 w-100 z-3 d-flex justify-content-center align-items-center">
-    <div class="inner w-50 bg-white rounded-2 overflow-hidden">
-      <div class="title bg-info text-white py-2">
-        <h2 class="text-center mb-0">Edit Task</h2>
-      </div>
-      <div id="formEdit" class="p-4 my-3 rounded">
-        <input id="editInput" type="text" name="taskEditInput" class="form-control custom-input" id="taskEditInput"
-          placeholder="Edit Your Task..." aria-label="Edit task input">
-        <div class="action d-flex justify-content-center align-items-center gap-4 py-2">
-          <button id="editTask" class="editTask btn btn-warning col-auto" aria-label="Edit task">Edit</button>
-          <button id="cancelTask" class="cancelTask btn btn-danger col-auto"
-            aria-label="Cancel editing task">Cancel</button>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto">
+          <div class="inner bg-white rounded-2 overflow-hidden">
+            <div class="title bg-info text-white py-2">
+              <h2 class="text-center mb-0">Edit Task</h2>
+            </div>
+            <div id="formEdit" class="p-4 my-3 rounded">
+              <input id="editInput" type="text" name="taskEditInput" class="form-control custom-input"
+                id="taskEditInput" placeholder="Edit Your Task..." aria-label="Edit task input">
+              <div class="action d-flex justify-content-center align-items-center gap-4 py-2">
+                <button id="editTask" class="editTask btn btn-warning col-auto" aria-label="Edit task">Edit</button>
+                <button id="cancelTask" class="cancelTask btn btn-danger col-auto"
+                  aria-label="Cancel editing task">Cancel</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

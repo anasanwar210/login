@@ -25,6 +25,18 @@ formEle.addEventListener("submit", (e) => {
   }
 });
 
+editTask.addEventListener("click", confirmEdit);
+cancelTask.addEventListener("click", cancelEdit);
+document.addEventListener("keydown", function (e) {
+  if (!editBox.classList.contains("d-none")) {
+    if (e.key == "Enter") {
+      confirmEdit();
+    } else if (e.key == "Escape") {
+      cancelEdit();
+    }
+  }
+});
+
 async function addTodos() {
   const todoText = {
     title: inputEle.value,
@@ -69,7 +81,6 @@ async function getAllTodos() {
     const data = await response.json();
     allTodos = data.todos;
     if (data.message === "success") {
-      console.log(data);
       displayTodos();
       checkTaskIsEmpty();
       completedTodos();
@@ -313,7 +324,7 @@ function updateTodo(id, index) {
   editInput.value = allTodos[index].title;
 }
 
-editTask.addEventListener("click", async function () {
+async function confirmEdit() {
   const todoText = {
     title: editInput.value,
     apiKey: apiKey,
@@ -347,7 +358,12 @@ editTask.addEventListener("click", async function () {
   } catch (error) {
     console.log(error);
   }
-});
+}
+
+function cancelEdit() {
+  editInput.value = "";
+  editBox.classList.add("d-none");
+}
 
 async function deleted() {
   loading.classList.remove("d-none");
