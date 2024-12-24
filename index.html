@@ -18,6 +18,25 @@
   <div class="loading d-none">
     <span class="loader"></span>
   </div>
+
+  <div id="editBox"
+    class="editBox d-none position-fixed vh-100 w-100 z-3 d-flex justify-content-center align-items-center">
+    <div class="inner w-50 bg-white rounded-2 overflow-hidden">
+      <div class="title bg-info text-white py-2">
+        <h2 class="text-center mb-0">Edit Task</h2>
+      </div>
+      <div id="formEdit" class="p-4 my-3 rounded">
+        <input id="editInput" type="text" name="taskEditInput" class="form-control custom-input" id="taskEditInput"
+          placeholder="Edit Your Task..." aria-label="Edit task input">
+        <div class="action d-flex justify-content-center align-items-center gap-4 py-2">
+          <button id="editTask" class="editTask btn btn-warning col-auto" aria-label="Edit task">Edit</button>
+          <button id="cancelTask" class="cancelTask btn btn-danger col-auto"
+            aria-label="Cancel editing task">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <section>
     <div class="container">
       <div class="row">
@@ -34,11 +53,11 @@
             <div class="statusNumber d-flex justify-content-center align-items-center rounded-pill"><span
                 class="completed"></span> / <span class="allTasks"></span></div>
           </div>
-          <form class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between gap-4 shadow">
+          <form id="formAdd"
+            class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between gap-4 shadow">
             <input type="text" name="taskInput" class="form-control custom-input" id="taskInput"
               placeholder="Task To Be Done...">
             <button id="addTask" type="submit" value="add" class="addTask col-2">Add</button>
-            <span id="editTask" value="update" class="btn btn-warning border-0 rounded d-none col-2">Edit</span>
           </form>
           <ul id="taskData"
             class="col-md-8 m-auto bg-white p-4 my-3 rounded d-flex justify-content-between flex-column gap-4 shadow list-unstyled shadow">

@@ -1,8 +1,14 @@
-const formEle = document.querySelector("form");
-const inputEle = document.querySelector("input");
-const loading = document.querySelector(".loading");
+const formEle = document.getElementById("formAdd");
+const inputEle = document.getElementById("taskInput");
 const addTask = document.getElementById("addTask");
+
+const editBox = document.getElementById("editBox");
+const formEdit = document.getElementById("formEdit");
+const editInput = document.getElementById("editInput");
 const editTask = document.getElementById("editTask");
+const cancelTask = document.getElementById("cancelTask");
+
+const loading = document.querySelector(".loading");
 let curIndexOfTaskEdit;
 let curIdOfTaskEdit;
 
@@ -18,8 +24,6 @@ formEle.addEventListener("submit", (e) => {
     addTodos();
   }
 });
-
-editTask.addEventListener("click", confirmUpdate);
 
 async function addTodos() {
   const todoText = {
@@ -305,20 +309,45 @@ function removeClickEvent(spanElement) {
 function updateTodo(id, index) {
   curIndexOfTaskEdit = index;
   curIdOfTaskEdit = id;
-  inputEle.value = allTodos[index].title;
-
-  allTodos.splice(index, 1);
-  addTask.classList.add("d-none");
-  editTask.classList.remove("d-none");
-  displayTodos();
+  editBox.classList.remove("d-none");
+  editInput.value = allTodos[index].title;
 }
 
-async function confirmUpdate() {
-  await deleted();
-  await addTodos();
-  addTask.classList.remove("d-none");
-  editTask.classList.add("d-none");
-}
+editTask.addEventListener("click", async function () {
+  const todoText = {
+    title: editInput.value,
+    apiKey: apiKey,
+  };
+
+  const option = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todoText),
+  };
+
+  try {
+    loading.classList.remove("d-none");
+    const response = await fetch(
+      "https://todos.routemisr.com/api/v1/todos",
+      option
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.message === "success") {
+        await deleted();
+        toastr.success("Updated Successfully", "Todo App");
+        await getAllTodos();
+      }
+    }
+    editBox.classList.add("d-none");
+    loading.classList.add("d-none");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 async function deleted() {
   loading.classList.remove("d-none");
